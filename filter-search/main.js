@@ -1,24 +1,37 @@
-// get filter element 
-const filterElement = document.querySelector('header input');
+// get filter element
+const filterElement = document.querySelector("header input");
 // get cards elements
-const cards = document.querySelectorAll('.cards li');
+const cards = document.querySelectorAll(".cards li");
 
 // add input event for the filter element
-filterElement.addEventListener('input', filterCards);
+filterElement.addEventListener("input", filterCards);
 
 // filter function
 function filterCards() {
-  console.log('Eu sou um input');
   //if the filter is not empty
-  // for each card od cards
-  // get card heading
-  // transform to lower case
-  // transform filter text to lower case
-  // if card tile does not include the filter text
-  // hide the card element
-  //else
-  // unhide the card element
-  // else
-  // for each card of cards
-  // unhide the card element
+  if (filterElement.value != "") {
+    // for each card od cards
+    for (let card of cards) {
+      // get card heading
+      let title = card.querySelector("h2");
+      // transform to lower case
+      title = title.textContent.toLowerCase();
+      // transform filter text to lower case
+      let filterText = filterElement.value.toLowerCase();
+      // if card title does not include the filter text
+      if (!title.includes(filterText)) {
+        // hide the card element
+        card.style.display = "none";
+      } else {
+        // unhide the card element
+        card.style.display = "block";
+      }
+    }
+  } else {
+    // for each card of cards
+    for (let card of cards) {
+      // unhide the card element
+      card.style.display = "block";
+    }
+  }
 }
